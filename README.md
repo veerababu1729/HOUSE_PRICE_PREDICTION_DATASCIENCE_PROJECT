@@ -22,9 +22,9 @@
 
 This project is a **complete end-to-end machine learning pipeline** for predicting house prices. It's specifically designed for **beginners** to learn the fundamentals of data science using Python's most popular libraries: **pandas**, **NumPy**, and **scikit-learn**.
 
-### 🎯 What I Learn :
+### 🎯 What I Learnt:
 - Data generation and manipulation with **NumPy**
-- Data analysis and visualization with **pandas**
+- Data analysis and visualization with **pandas** and **matplotlib/seaborn**
 - Machine learning workflows with **scikit-learn**
 - Feature engineering and preprocessing techniques
 - Model evaluation and comparison
@@ -37,7 +37,7 @@ This project is a **complete end-to-end machine learning pipeline** for predicti
 ### 🔢 **Data Generation**
 - Synthetic dataset creation using NumPy
 - Realistic house features (bedrooms, bathrooms, square footage, age, location)
-- Price calculation with location-based multipliers and noise
+- Price calculation with location-based multipliers and realistic noise
 
 ### 📊 **Exploratory Data Analysis**
 - Comprehensive statistical summaries
@@ -76,8 +76,8 @@ Python 3.7+
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/house-price-prediction.git
-   cd house-price-prediction
+   git clone https://github.com/veera1729/HOUSE_PRICE_PREDICTION_DATASCIENCE.git
+   cd HOUSE_PRICE_PREDICTION_DATASCIENCE
    ```
 
 2. **Install required packages**
@@ -98,35 +98,34 @@ pip install pandas numpy scikit-learn matplotlib seaborn && python house_price_p
 ---
 
 ## 📊 Results
-<img width="1536" height="754" alt="Figure_2" src="https://github.com/user-attachments/assets/d433780f-60d5-4545-8ad2-8d60d5af44c5" />
-
-
 
 ### 🏆 Model Performance
 
-| Model | MAE | RMSE | R² Score |
-|-------|-----|------|----------|
-| **Linear Regression** | $XX,XXX | $XX,XXX | 0.XXX |
-| **Random Forest** | $XX,XXX | $XX,XXX | 0.XXX |
+The project generates synthetic data, so results will vary with each run due to random generation. Typical performance metrics:
 
-> *Note: Actual values will vary due to random data generation*
+| Model | MAE (₹) | RMSE (₹) | R² Score |
+|-------|---------|----------|----------|
+| **Linear Regression** | ~800,000 | ~1,200,000 | ~0.85 |
+| **Random Forest** | ~600,000 | ~900,000 | ~0.92 |
+
+> *Note: Actual values will vary due to random data generation with np.random.seed(42)*
 
 ### 📈 Key Insights
 
-1. **Square footage** is the most important predictor of house prices
+1. **Square footage** is typically the most important predictor of house prices
 2. **Location** significantly impacts property values (Downtown > Suburbs > Rural)
-3. **Random Forest** typically outperforms Linear Regression for this dataset
-4. **Feature engineering** improves model performance
-5. **Age** has an inverse relationship with price
+3. **Random Forest** generally outperforms Linear Regression for this dataset
+4. **Feature engineering** (new features like price_per_sqft, room_total) improves model performance
+5. **House age** has an inverse relationship with price
 
 ### 📸 Sample Visualizations
 
 The project generates multiple visualizations including:
 - Price distribution histograms
 - Scatter plots for feature relationships
-- Box plots for categorical comparisons
-- Correlation heatmaps
-- Feature importance charts
+- Box plots for location-based price comparisons
+- Correlation heatmaps for numeric features
+- Feature importance charts from Random Forest
 
 ---
 
@@ -143,15 +142,15 @@ The project generates multiple visualizations including:
 
 </div>
 
-### 🔧 Library Usage
+### 🔧 Library Usage Examples
 
 #### **NumPy**
 ```python
 # Random data generation
 bedrooms = np.random.randint(1, 6, n_samples)
-# Mathematical operations
-price = sqft * 150 + np.random.normal(0, 15000, n_samples)
-# Array operations
+# Mathematical operations with realistic pricing
+price = (sqft * 8000 + bedrooms * 500000) * location_multiplier + np.random.normal(0, 800000, n_samples)
+# Array operations and clipping
 sqft = np.clip(sqft, 500, 5000)
 ```
 
@@ -162,15 +161,15 @@ df = pd.DataFrame({...})
 # Feature engineering
 df['price_per_sqft'] = df['price'] / df['sqft']
 # Categorical encoding
-df_encoded = pd.get_dummies(df, columns=['location'])
+df_encoded = pd.get_dummies(df, columns=['location', 'age_category'])
 ```
 
 #### **Scikit-learn**
 ```python
 # Train-test split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 # Model training
-model = RandomForestRegressor(n_estimators=100)
+model = RandomForestRegressor(n_estimators=100, random_state=42)
 model.fit(X_train, y_train)
 # Evaluation
 r2_score(y_test, predictions)
@@ -181,21 +180,21 @@ r2_score(y_test, predictions)
 ## 📚 Learning Outcomes
 
 ### 🎓 **Beginner Level**
-- ✅ Understanding data structures (arrays, DataFrames)
+- ✅ Understanding data structures (NumPy arrays, pandas DataFrames)
 - ✅ Basic data manipulation and cleaning
 - ✅ Simple statistical analysis
 - ✅ Data visualization fundamentals
 
 ### 🎓 **Intermediate Level**
 - ✅ Feature engineering techniques
-- ✅ Machine learning model training
-- ✅ Model evaluation and comparison
-- ✅ Cross-validation concepts
+- ✅ Machine learning model training and evaluation
+- ✅ Model comparison and selection
+- ✅ Data preprocessing and scaling
 
 ### 🎓 **Advanced Concepts**
-- ✅ Pipeline optimization
+- ✅ Complete ML pipeline implementation
 - ✅ Feature importance analysis
-- ✅ Hyperparameter tuning foundations
+- ✅ Synthetic data generation
 - ✅ Production-ready code structure
 
 ---
@@ -221,11 +220,11 @@ graph LR
 5. **🔧 Feature Engineering** - Create meaningful derived features
 6. **⚙️ Data Preprocessing** - Handle categorical variables and scaling
 7. **🔄 Train-Test Split** - Proper data splitting for validation
-8. **📏 Feature Scaling** - Standardization for algorithm optimization
-9. **🤖 Model Training** - Train multiple algorithms
+8. **📏 Feature Scaling** - Standardization for Linear Regression optimization
+9. **🤖 Model Training** - Train Linear Regression and Random Forest
 10. **📊 Model Evaluation** - Comprehensive performance metrics
-11. **🎯 Feature Analysis** - Understand model decision-making
-12. **🔮 Predictions** - Make predictions on new data
+11. **🎯 Feature Analysis** - Understand Random Forest feature importance
+12. **🔮 Predictions** - Make predictions on sample houses
 13. **📈 Final Comparison** - Model selection and insights
 
 ---
@@ -254,6 +253,8 @@ Contributions are welcome! Here are some ways you can help:
 - [Pandas Documentation](https://pandas.pydata.org/docs/)
 - [NumPy Documentation](https://numpy.org/doc/)
 - [Scikit-learn Documentation](https://scikit-learn.org/stable/)
+- [Matplotlib Documentation](https://matplotlib.org/stable/)
+- [Seaborn Documentation](https://seaborn.pydata.org/)
 
 ### 🎥 **Learning Materials**
 - [Kaggle Learn](https://www.kaggle.com/learn) - Free data science courses
@@ -267,12 +268,38 @@ Contributions are welcome! Here are some ways you can help:
 
 ---
 
+## 📁 File Structure
+
+```
+HOUSE_PRICE_PREDICTION_DATASCIENCE/
+│
+├── house_price_prediction.py    # Main script with complete pipeline
+├── README.md                    # This file
+└── requirements.txt             # Python dependencies (optional)
+```
+
+---
+
+## 🚀 Next Steps for Further Learning
+
+After completing this project, consider exploring:
+
+- **Advanced Algorithms**: Try XGBoost, Support Vector Regression, Neural Networks
+- **Cross-Validation**: Implement k-fold cross-validation for robust evaluation
+- **Hyperparameter Tuning**: Use GridSearchCV or RandomizedSearchCV
+- **Real Datasets**: Work with actual housing datasets from Kaggle
+- **Advanced Feature Engineering**: Try polynomial features, feature selection
+- **Model Deployment**: Learn Flask/FastAPI to create web applications
+
+---
+
 ## 🙋‍♂️ Support
 
 Having trouble? Here's how to get help:
 
 - 📧 **Email**: veerababup114@gmail.com
-- 💬 **Issues**: [Create an issue](https://github.com/veera1729/HOUSE_PRICE_PREDICTION_DATASCIENCE/issues)
+- 💬 **Issues**: [Create an issue](https://github.com/veerababu1729/HOUSE_PRICE_PREDICTION_DATASCIENCE_PROJECT/issues)
+- 📖 **Documentation**: Check the inline comments in the code
 
 ---
 
@@ -281,6 +308,7 @@ Having trouble? Here's how to get help:
 - **NumPy Community** for the fundamental array computing library
 - **Pandas Community** for the powerful data analysis tools
 - **Scikit-learn Community** for the comprehensive ML library
+- **Matplotlib & Seaborn Communities** for excellent visualization tools
 - **Open Source Community** for making data science accessible to everyone
 
 ---
