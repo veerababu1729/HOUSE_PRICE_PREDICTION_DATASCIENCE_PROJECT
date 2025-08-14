@@ -3,7 +3,6 @@
 <div align="center">
 
 ![Python](https://img.shields.io/badge/python-v3.7+-blue.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Status](https://img.shields.io/badge/status-complete-brightgreen.svg)
 ![Contributions](https://img.shields.io/badge/contributions-welcome-orange.svg)
 
@@ -23,7 +22,7 @@
 
 This project is a **complete end-to-end machine learning pipeline** for predicting house prices. It's specifically designed for **beginners** to learn the fundamentals of data science using Python's most popular libraries: **pandas**, **NumPy**, and **scikit-learn**.
 
-### 🎯 What You'll Learn
+### 🎯 What I Learn :
 - Data generation and manipulation with **NumPy**
 - Data analysis and visualization with **pandas**
 - Machine learning workflows with **scikit-learn**
@@ -99,6 +98,8 @@ pip install pandas numpy scikit-learn matplotlib seaborn && python house_price_p
 ---
 
 ## 📊 Results
+<img width="1536" height="754" alt="Figure_1" src="https://github.com/user-attachments/assets/a3d6128f-52e5-4159-b538-cfaa842a17e3" />
+
 
 ### 🏆 Model Performance
 
@@ -243,28 +244,6 @@ Contributions are welcome! Here are some ways you can help:
 2. Create a feature branch: `git checkout -b feature-name`
 3. Make your changes and test thoroughly
 4. Submit a pull request with a clear description
-
----
-
-## 🚀 Next Steps
-
-Ready to advance your skills? Try these challenges:
-
-### 🎯 **Beginner Challenges**
-- [ ] Add more visualization types
-- [ ] Experiment with different random seeds
-- [ ] Try different train-test split ratios
-
-### 🎯 **Intermediate Challenges**
-- [ ] Implement cross-validation
-- [ ] Add more feature engineering techniques
-- [ ] Try different algorithms (SVM, Gradient Boosting)
-
-### 🎯 **Advanced Challenges**
-- [ ] Implement hyperparameter tuning
-- [ ] Add model interpretability (SHAP values)
-- [ ] Create a web interface with Flask/Streamlit
-- [ ] Work with real estate datasets
 
 ---
 
