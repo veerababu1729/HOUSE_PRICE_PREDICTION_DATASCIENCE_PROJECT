@@ -98,7 +98,8 @@ pip install pandas numpy scikit-learn matplotlib seaborn && python house_price_p
 ---
 
 ## 📊 Results
-<img width="1536" height="754" alt="Figure_1" src="https://github.com/user-attachments/assets/a3d6128f-52e5-4159-b538-cfaa842a17e3" />
+<img width="1536" height="754" alt="Figure_2" src="https://github.com/user-attachments/assets/d433780f-60d5-4545-8ad2-8d60d5af44c5" />
+
 
 
 ### 🏆 Model Performance
