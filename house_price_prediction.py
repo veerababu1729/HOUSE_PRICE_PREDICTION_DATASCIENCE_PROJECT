@@ -3,8 +3,6 @@
 
 import pandas as pd
 import numpy as np
-import matplotlib
-matplotlib.use('TkAgg')  # Or try 'Agg' if TkAgg doesn't work
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.model_selection import train_test_split
@@ -14,7 +12,6 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 import warnings
 warnings.filterwarnings('ignore')
-
 
 # Set display options for better output
 pd.set_option('display.max_columns', None)
@@ -45,12 +42,12 @@ location = np.random.choice(['Downtown', 'Suburbs', 'Rural'], n_samples, p=[0.3,
 location_multiplier = np.where(location == 'Downtown', 1.5,
                       np.where(location == 'Suburbs', 1.2, 1.0))
 
-price = (sqft * 150 + 
-         bedrooms * 10000 + 
-         bathrooms * 8000 - 
-         age * 1000) * location_multiplier + np.random.normal(0, 15000, n_samples)
+price = (sqft * 8000 + 
+         bedrooms * 500000 + 
+         bathrooms * 400000 - 
+         age * 50000) * location_multiplier + np.random.normal(0, 800000, n_samples)
 
-price = np.clip(price, 50000, 1000000)  # Keep realistic price range
+price = np.clip(price, 2500000, 50000000)  # Keep realistic price range
 
 print(f"✅ Generated {n_samples} house records using NumPy")
 print(f"Features: bedrooms, bathrooms, sqft, age, location")
@@ -101,7 +98,7 @@ plt.figure(figsize=(15, 10))
 plt.subplot(2, 3, 1)
 plt.hist(df['price'], bins=30, edgecolor='black', alpha=0.7)
 plt.title('Price Distribution')
-plt.xlabel('Price ($)')
+plt.xlabel('Price (₹)')
 plt.ylabel('Frequency')
 
 # Price vs Square Feet
@@ -109,7 +106,7 @@ plt.subplot(2, 3, 2)
 plt.scatter(df['sqft'], df['price'], alpha=0.5)
 plt.title('Price vs Square Feet')
 plt.xlabel('Square Feet')
-plt.ylabel('Price ($)')
+plt.ylabel('Price (₹)')
 
 # Price by Location
 plt.subplot(2, 3, 3)
@@ -129,7 +126,7 @@ plt.subplot(2, 3, 5)
 df.groupby('bedrooms')['price'].mean().plot(kind='bar')
 plt.title('Average Price by Bedrooms')
 plt.xlabel('Bedrooms')
-plt.ylabel('Average Price ($)')
+plt.ylabel('Average Price (₹)')
 plt.xticks(rotation=0)
 
 # Age vs Price
@@ -137,7 +134,7 @@ plt.subplot(2, 3, 6)
 plt.scatter(df['age'], df['price'], alpha=0.5)
 plt.title('Age vs Price')
 plt.xlabel('Age (years)')
-plt.ylabel('Price ($)')
+plt.ylabel('Price (₹)')
 
 plt.tight_layout()
 plt.show()
@@ -239,8 +236,8 @@ def evaluate_model(y_true, y_pred, model_name):
     r2 = r2_score(y_true, y_pred)
     
     print(f"\n{model_name} Results:")
-    print(f"Mean Absolute Error: ${mae:,.2f}")
-    print(f"Root Mean Square Error: ${rmse:,.2f}")
+    print(f"Mean Absolute Error: ₹{mae:,.2f}")
+    print(f"Root Mean Square Error: ₹{rmse:,.2f}")
     print(f"R² Score: {r2:.4f}")
     return {'MAE': mae, 'RMSE': rmse, 'R2': r2}
 
@@ -312,8 +309,8 @@ rf_sample_pred = rf_model.predict(sample_X)
 print("\nPredicted Prices:")
 for i in range(len(sample_houses)):
     print(f"House {i+1}:")
-    print(f"  Linear Regression: ${lr_sample_pred[i]:,.0f}")
-    print(f"  Random Forest: ${rf_sample_pred[i]:,.0f}")
+    print(f"  Linear Regression: ₹{lr_sample_pred[i]:,.0f}")
+    print(f"  Random Forest: ₹{rf_sample_pred[i]:,.0f}")
 
 # STEP 13: MODEL COMPARISON AND INSIGHTS
 print("\n📈 STEP 13: Final Model Comparison & Insights")
@@ -351,3 +348,12 @@ print("- Implement cross-validation")
 print("- Add more advanced feature engineering")
 print("- Explore hyperparameter tuning")
 print("- Work with real datasets from Kaggle or UCI ML Repository")
+
+print("\n" + "="*60)
+print("🎯 SCRIPT COMPLETE! All plots are available in separate windows.")
+print("   You can interact with the plots while exploring the results.")
+print("="*60)
+
+# Keep plots alive (optional - remove if not needed)
+input("\nPress Enter to close all plots and exit...")
+plt.close('all')
